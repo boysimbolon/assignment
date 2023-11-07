@@ -5,12 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculator | Boy Simbolon</title>
     <style>
-        .frame{
+        .frame {
             margin-top: 10px;
             display: flex;
             align-items: center;
         }
-        .frame span{
+
+        .frame span {
             margin-right: 10px;
         }
     </style>
@@ -19,42 +20,50 @@
 <body>
     <span>Input</span> <input type="text" id="var1">
     <select id="operator">
-        <option value="+">+</option>
-        <option value="-">-</option>
-        <option value="*">*</option>
-        <option value="/">/</option>
+        <option value="tambah" id="tambah">+</option>
+        <option value="kurang" id="kurang">-</option>
+        <option value="kali" id="kali">*</option>
+        <option value="bagi" id="bagi">/</option>
     </select>
     <input type="text" id="var2">
     <button onclick="calculate()">Calculate</button>
     <br>
     <div class="frame">
         <span>Result: </span>
-        <div id="hasil" style="width: 200px;height: 20px; border: 1px solid black; padding: 2px; border-radius: 3px;">
+        <div id="hasil" style="width: 200px; height: 20px; border: 1px solid black; padding: 2px; border-radius: 3px;">
         </div>
     </div>
     <script>
+        function tambah(a, b) {
+            return a + b;
+        }
+        function kurang(a, b) {
+            return a - b;
+        }
+        function kali(a, b) {
+            return a * b;
+        }
         function calculate() {
             let var1 = parseFloat(document.getElementById("var1").value);
             let var2 = parseFloat(document.getElementById("var2").value);
-            let operator = document.getElementById("operator").value;
+            let operatorId = document.getElementById("operator").value; // Mengambil ID operator
             let hasil = 0;
-            if (operator == "+") {
-                hasil = var1 + var2;
-            } else if (operator == "-") {
-                hasil = var1 - var2;
-            } else if (operator == "*") {
-                hasil = var1 * var2;
-            } else if (operator == "/") {
-                if (var2 != 0) {
+            if (operatorId === "tambah") {
+                hasil = tambah(var1, var2);
+            } else if (operatorId === "kurang") {
+                hasil = kurang(var1, var2);
+            } else if (operatorId === "kali") {
+                hasil = kali(var1, var2);
+            } else if (operatorId === "bagi") {
+                if (var2 !== 0) {
                     hasil = var1 / var2;
                 } else {
                     hasil = "Infinity (division by zero)";
                 }
-            } else {
-                hasil = "Invalid operator";
             }
             document.getElementById("hasil").innerHTML = hasil;
         }
     </script>
 </body>
+
 </html>
